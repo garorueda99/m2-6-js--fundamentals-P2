@@ -1,7 +1,7 @@
 // Exercise 2
 // -------------------
-const lateComers = ['Felicia', 'Charles', 'Terry'];
-const earlyBirds = ['Ellen', 'Jerry', 'Jasmine'];
+const lateComers = ["Felicia", "Charles", "Terry"];
+const earlyBirds = ["Ellen", "Jerry", "Jasmine"];
 
 // You have two arrays above of people who arrived late to your party and
 // people who arrived early.
@@ -10,4 +10,11 @@ const earlyBirds = ['Ellen', 'Jerry', 'Jasmine'];
 // Write a program that will do the following:
 // Output them in a tidy list from first to last arrival the console.
 
+const allComers = [];
+allComers.push(...earlyBirds, ...lateComers);
+
+allComers.forEach(
+  (element, index) => (allComers[index] = `#${index + 1} ${element}`)
+);
+console.log(allComers);
 // NO for loops!

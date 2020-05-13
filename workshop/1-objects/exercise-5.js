@@ -2,12 +2,12 @@
 // below is an example of an array of objects, where each object represents a person:
 
 const people = [
-  { name: { first: 'Alyssa', middle: 'P.', last: 'Hacker' }, age: 26 },
-  { name: { first: 'Ben', last: 'Bitdiddle' }, age: 34 },
-  { name: { first: 'Eva', middle: 'Lu', last: 'Ator' }, age: 40 },
-  { name: { first: 'Lem', middle: 'E.', last: 'Tweakit' }, age: 45 },
-  { name: { first: 'Louis', last: 'Reasoner' }, age: 21 },
-  { name: { first: 'Shahan', middle: 'Haig', last: 'Krakirian' }, age: 21 },
+  { name: { first: "Alyssa", middle: "P.", last: "Hacker" }, age: 26 },
+  { name: { first: "Ben", last: "Bitdiddle" }, age: 34 },
+  { name: { first: "Eva", middle: "Lu", last: "Ator" }, age: 40 },
+  { name: { first: "Lem", middle: "E.", last: "Tweakit" }, age: 45 },
+  { name: { first: "Louis", last: "Reasoner" }, age: 21 },
+  { name: { first: "Shahan", middle: "Haig", last: "Krakirian" }, age: 21 },
 ];
 
 // Exercise 5.0
@@ -18,15 +18,25 @@ const people = [
 
 //-------------------------------------------------
 
+const me = {
+  name: { first: "German", middle: "Andres", last: "Rueda" },
+  age: 39,
+};
+
+people.push(me);
+
 // Exercise 5.1
 // ------------
 // Write a function that returns the average age of the `people` array.
 
 function avgAge(peopleArr) {
+  const reducer = (accumulator, people) => accumulator + people.age;
+  const totalYears = peopleArr.reduce(reducer, 0);
+  return totalYears / peopleArr.length;
   // Yuor code here
 }
 
-console.log(`Average age is ${avgAge(people)}.`);
+console.log(`Average age is ${avgAge(people).toFixed(2)}.`);
 
 //-------------------------------------------------
 
@@ -38,6 +48,20 @@ console.log(`Average age is ${avgAge(people)}.`);
 
 function fullName(peopleArr) {
   // Your code here
+  let fullNamesArray = [];
+  peopleArr.forEach((element) => {
+    fullNamesArray.push(betterFullName(element));
+  });
+  return fullNamesArray;
+}
+
+function betterFullName(person) {
+  // Your code here
+  // console.log("middle" in person);
+  // console.log(rick);
+  return !("middle" in person.name)
+    ? `${person.name.first} ${person.name.last}`
+    : `${person.name.first} ${person.name.middle} ${person.name.last}`;
 }
 
 console.log(fullName(people));
@@ -51,6 +75,9 @@ console.log(fullName(people));
 
 function olderPeople(peopleArr, age) {
   // Your code here
+  const agefilter = (x) => x.age > age;
+  const olderthanAge = people.filter(agefilter);
+  return olderthanAge;
 }
 
 console.log(olderPeople(people, 26));
